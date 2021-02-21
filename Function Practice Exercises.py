@@ -39,4 +39,26 @@ makes_twenty(20,10)
 makes_twenty(12,8)
 makes_twenty(2,3)
 
+#OLD MACDONALD: Write a function that capitalizes the first and fourth letters of a name¶
+#old_macdonald('macdonald') --> MacDonald
 
+def old_macdonald(name):
+    new_name= name[:3].capitalize() + name[3:].capitalize()
+    print (new_name)
+
+old_macdonald('oldmacdonald')
+
+#MASTER YODA: Given a sentence, return a sentence with the words reversed¶
+#master_yoda('I am home') --> 'home am I'
+#master_yoda('We are ready') --> 'ready are We'
+
+def master_yoda(text):
+    text = text.split(' ')
+    new_text=''
+    text_length = len(text)-1
+    
+    for i in range(text_length+1):
+        new_text = new_text + ' ' + text[text_length-i]
+    print (new_text)
+    
+master_yoda('I am home')
