@@ -84,8 +84,32 @@ almost_there(104)
 almost_there(150)
 almost_there(209)
 
-#LEVEL 2 PROBLEMS
+print('LEVEL 2 PROBLEMS')
 
+#Given a list of ints, return True if the array contains a 3 next to a 3 somewhere.
 
+#has_33([1, 3, 3]) → True
+#has_33([1, 3, 1, 3]) → False
+#has_33([3, 1, 3]) → False
+
+def has_33(nums):
+    for i in range(len(nums)):
+        if nums[slice(i,i+2)] == [3,3]: #slice vyvtvori objekt slice ktery vybere dve cisla za sebou
+            is_33=True
+            break
+        else:
+            is_33=False
+    print (is_33)
+
+has_33([1, 3, 3])
+has_33([1, 3, 1, 3])
+has_33([3, 1, 3])
+
+#PAPER DOLL: Given a string, return a string where for every character in the original there are three characters
+#paper_doll('Hello') --> 'HHHeeellllllooo'
+#paper_doll('Mississippi') --> 'MMMiiissssssiiippppppiii'
+
+def paper_doll(text):
+    
 
 
