@@ -110,6 +110,13 @@ has_33([3, 1, 3])
 #paper_doll('Mississippi') --> 'MMMiiissssssiiippppppiii'
 
 def paper_doll(text):
+    new_text = ''
+    for i in text:
+        new_text = new_text + 3*i
+    print (new_text)
+    
+paper_doll('Hello')
+paper_doll('Mississippi')
     
 
 
