@@ -154,6 +154,36 @@ blackjack(9,9,11)
 #summer_69([4, 5, 6, 7, 8, 9]) --> 9
 #summer_69([2, 1, 6, 9, 11]) --> 14
 
+print ('summer_69')
 
+def summer_69(nums):
+    sum_of_nums = 0
+    sum_switch = True 
+    for i in nums:
+               
+        if i == 6:
+            sum_switch = False
+        if sum_switch == True:
+            sum_of_nums = sum_of_nums + i
+        else:
+            pass
+        if i == 9:
+            sum_switch = True
+    print (sum_of_nums)
+
+summer_69([1, 3, 5])
+summer_69([4, 5, 6, 7, 8, 9])
+summer_69([2, 1, 6, 9, 11])
+
+print ('challenging problems')
+
+#SPY GAME: Write a function that takes in a list of integers and returns True if it contains 007 in order
+# spy_game([1,2,4,0,0,7,5]) --> True
+# spy_game([1,0,2,4,0,5,7]) --> True
+# spy_game([1,7,2,0,4,5,0]) --> False
+
+def spy_game(nums):
+
+    
 
 
