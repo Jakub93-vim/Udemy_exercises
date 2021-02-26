@@ -183,7 +183,46 @@ print ('challenging problems')
 # spy_game([1,7,2,0,4,5,0]) --> False
 
 def spy_game(nums):
+    first = False
+    second = False
+    third = False
+    for ele in nums:
+        if ele == 0:
+            first = True
+            
+        if ele == 0 and first == True:
+            second = True
+        if ele == 7 and first == True and second == True:
+            third = True
+            break
+        else:
+            third = False
+            
+    if third == True:
+        print (True)
+    else:
+        print (False)
 
-    
+spy_game([1,2,4,0,0,7,5])
+spy_game([1,0,2,4,0,5,7])
+spy_game([1,7,2,0,4,5,0])
 
+
+#COUNT PRIMES: Write a function that returns the number of
+#prime numbers that exist up to and including a given number
+#count_primes(100) --> 25
+
+def count_primes(num):
+    count = 0
+    for frs_count in range(num):
+        for sec_count in range (2,frs_count):
+            
+            if (frs_count%sec_count) == 0:
+                break
+            else:
+                count = count + 1
+
+    print (count)
+
+count_primes(100)
 
