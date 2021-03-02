@@ -211,18 +211,39 @@ spy_game([1,7,2,0,4,5,0])
 #COUNT PRIMES: Write a function that returns the number of
 #prime numbers that exist up to and including a given number
 #count_primes(100) --> 25
+print ('Count primes')
 
 def count_primes(num):
-    count = 0
+    count = 1
+    is_prime = False
     for frs_count in range(num):
+        
+        if is_prime == True:
+            count = count +1
+            
         for sec_count in range (2,frs_count):
             
-            if (frs_count%sec_count) == 0:
-                break
+            if (frs_count%sec_count) != 0:
+                is_prime = True
+                #print (frs_count)
             else:
-                count = count + 1
+                is_prime = False
+                break
 
     print (count)
 
 count_primes(100)
+
+#PRINT BIG: Write a function that takes in a single letter,
+#and returns a 5x5 representation of that letter
+#print_big('a')
+
+#out:   *  
+#      * *
+#     *****
+#     *   *
+#    *   *
+#HINT: Consider making a dictionary of possible patterns,
+#and mapping the alphabet to specific 5-line combinations of patterns.
+#For purposes of this exercise, it's ok if your dictionary stops at "E".
 
