@@ -247,3 +247,14 @@ count_primes(100)
 #and mapping the alphabet to specific 5-line combinations of patterns.
 #For purposes of this exercise, it's ok if your dictionary stops at "E".
 
+letters = {"a":"  *\n * *\n*****\n*   *\n*   *",
+           "b":"****\n*  *\n****\n*  *\n****"}
+
+def print_big (letter):
+
+    print (letters[letter])
+
+print_big('a')
+print('')
+print_big('b')
+    
