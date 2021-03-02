@@ -12,15 +12,19 @@ lesser_of_two_evens(2,5)
 
 #ANIMAL CRACKERS: Write a function takes a two-word string and returns True if both words begin with same letter
 
+print ('Animal crackers')
+
 def animal_crackers(text):
     check = text.split(' ')
     first_letter=[]
     for ele in check:
         first_letter.append(ele[0])
     if first_letter[0] == first_letter[1]:
-        return True
+        print (True)
     else:
-        return False
+        print (False)
+
+    print ( 'easier way is', check[0][0] == check[1][0] )
 
 animal_crackers('Levelheaded Llama')
 animal_crackers('Crazy Kangaroo')
@@ -28,6 +32,7 @@ animal_crackers('Crazy Kangaroo')
 #MAKES TWENTY: Given two integers, return True if the sum of the integers is 20
 #or if one of the integers is 20. If not, return False
 
+print ('Makes twenty')
 
 def makes_twenty(n1,n2):
     if n1 == 20 or n2 == 20 or n1+n2 == 20:
@@ -60,6 +65,8 @@ def master_yoda(text):
     for i in range(text_length+1):
         new_text = new_text + ' ' + text[text_length-i]
     print (new_text)
+
+    # easy solution -> return ' '.join(text.split()[::-1])
     
 master_yoda('I am home')
 
