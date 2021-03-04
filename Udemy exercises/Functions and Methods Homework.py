@@ -32,5 +32,37 @@ print(up_low('Hello Mr. Rogers, how are you this fine Tuesday?'))
 
 #Write a Python function that takes a list and returns a new list with unique elements of the first list.
 
+def unique_list (list):
+
+    #new_list = (x for x in list if x not in list)
+    new_list = []
+    for x in list:
+        if x in new_list:
+            pass
+        else:
+            new_list.append(x)
+
+    return new_list
+
+print(unique_list([1,1,1,2,2,3,4,5,6,6,7,8,8]))
+print(unique_list([1,1,1,1,2,2,3,3,3,3,4,5]))
+
+
+#Write a Python function to multiply all the numbers in a list.
+
+def multiply (num):
+    mult = 1
+    #mult = [x*x for x in num]
+
+    for x in num:
+        mult = mult*x
+
+    return mult
+
+print(multiply([1, 2, 3, -4]))
+
+
+#Write a Python function that checks whether a word or phrase is palindrome or not.
+
 
 
