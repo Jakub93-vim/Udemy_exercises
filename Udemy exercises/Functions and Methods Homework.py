@@ -30,3 +30,7 @@ def up_low(string):
 
 print(up_low('Hello Mr. Rogers, how are you this fine Tuesday?'))
 
+#Write a Python function that takes a list and returns a new list with unique elements of the first list.
+
+
+
