@@ -30,6 +30,21 @@ def up_low(string):
 
 print(up_low('Hello Mr. Rogers, how are you this fine Tuesday?'))
 
+def up_low_dict(string):
+
+    dict = {'upper': 0, 'lower': 0}
+
+    for x in string:
+        if x.isupper():
+            dict['upper']+=1
+        elif x.islower():
+            dict['lower']+=1
+        else:
+            pass
+    print ('In the string are {} upper and {} lower letters'.format(dict['upper'],dict['lower']))
+
+up_low_dict('Hello Mr. Rogers, how are you this fine Tuesday?')
+
 #Write a Python function that takes a list and returns a new list with unique elements of the first list.
 
 def unique_list (list):
@@ -55,7 +70,7 @@ def multiply (num):
     #mult = [x*x for x in num]
 
     for x in num:
-        mult = mult*x
+        mult *= x
 
     return mult
 
