@@ -64,5 +64,30 @@ print(multiply([1, 2, 3, -4]))
 
 #Write a Python function that checks whether a word or phrase is palindrome or not.
 
+def palindrome(string):
+    #new_string = string.replace(' ','')
+    #old_string = string.replace(' ','')
+    #new_string = [x for x in new_string]
+    #old_string = [x for x in old_string]
+    # return new_string[::-1], old_string
 
 
+    return [x for x in string.replace(' ','')] == [x for x in string.replace(' ','')][::-1]
+
+
+
+print (palindrome('nurses run'))
+
+#Write a Python function to check whether a string is pangram or not.
+
+print ('is pana ?')
+import string
+
+def ispana (string, alphabet=string.ascii_lowercase):
+
+    my_string = sorted(set(string.replace(' ','')))
+    alphabet = [x for x in alphabet]
+    return my_string == alphabet
+
+print (ispana('as dfds sds '))
+print (ispana('the quick brown fox jumps over the lazy dog'))
