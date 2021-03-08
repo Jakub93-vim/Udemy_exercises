@@ -4,7 +4,7 @@ def clear_screen():
 
 start_board = ['#',' ',' ',' ',' ',' ',' ',' ',' ',' ']
 
-def display_board(board):
+def display_board(board): # displays board with board items as a list
 
     space_line = '   |   |   '
     full_line = '----------------- '
@@ -13,16 +13,25 @@ def display_board(board):
            full_line,'\n','  ',board[1],'  |  ',board[2],'  |  ',board[3],sep='')
 
 def player_input():
-    marker = 'wrong'
+
+        marker = 'wrong'
+
+        while marker not in ['X','O']:
+
+            marker = input('Hi Player 1, do you want to be X or O ?')
+
+            if marker not in ['X','O']:
+                print('Type in O or X')
+        if marker == 'X':
+            return ('X','O')
+        else:
+            return ('O','X')
+
+def player_choice(board):
+
+    #TODO check if the board is empty on that position
+
     position = 'wrong'
-
-    while marker not in ['X','O']:
-
-        marker = input('Hi Player 1, do you want to be X or O ?')
-
-        if marker not in ['X','O']:
-            print('Type in O or X')
-
     while position not in range(1,9):
 
         position = input('Write your position(1-9): ')
@@ -32,7 +41,7 @@ def player_input():
         else:
             position = int(position)
 
-    return marker,position
+    return position
 
 def place_marker(board, marker, position):
 
@@ -43,10 +52,15 @@ def place_marker(board, marker, position):
 
 
 display_board(start_board)
-defined_marker,defined_position = player_input()
+defined_marker = player_input()
+defined_position = player_choice(start_board)
 board = place_marker(start_board,defined_marker,defined_position)
 display_board(board)
+n= 1
+while n < 10:
 
-defined_marker,defined_position = player_input()
-board = place_marker(start_board,defined_marker,defined_position)
-display_board(board)
+    defined_marker,defined_position = player_input()
+    clear_screen()
+    board = place_marker(start_board,defined_marker,defined_position)
+    display_board(board)
+    n+= 1
