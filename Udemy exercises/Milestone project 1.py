@@ -116,10 +116,10 @@ def win_check(board):
     elif board[7] == 'X' and board[5] == 'X' and board[3] == 'X':
         print('Player X wins !! ')
         return True
-    elif board[8] == 'X' and board[5] == 'X' and board[2] == 'O':
+    elif board[8] == 'X' and board[5] == 'X' and board[2] == 'X':
         print('Player X wins !! ')
         return True
-    elif board[9] == 'X' and board[6] == 'X' and board[3] == 'O':
+    elif board[9] == 'X' and board[6] == 'X' and board[3] == 'X':
         print('Player X wins !! ')
         return True
     else:
