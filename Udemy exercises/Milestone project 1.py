@@ -125,7 +125,21 @@ def win_check(board):
     else:
         return False
 
+def replay():
 
+    repl = 'wrong'
+
+    while repl not in ['Y', 'N']:
+
+        repl = input('Hi Player 1, do you want to play again (Y/N) ?')
+
+        if repl not in ['Y', 'N']:
+            print('Type in Y or N')
+
+    if repl == 'Y':
+        return True
+    else:
+        return False
 
 defined_marker = player_input()
 display_board(start_board)
@@ -151,4 +165,3 @@ while full_board_check(board):
         break
     clear_screen()
     display_board(board)
-
