@@ -4,3 +4,6 @@ try:
 
 except:
     print('There is an error')
+
+finally:
+    print('')
