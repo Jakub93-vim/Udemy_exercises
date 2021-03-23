@@ -15,7 +15,6 @@ class Card:
     def __str__(self):
         return self.rank + ' of ' + self.suit
 
-two_hearts = Card('Hearts','Two')
 
 
 class Deck:
@@ -55,18 +54,59 @@ class Player:
     def __str__(self):
         return f'Player {self.name} has {len(self.all_cards)} cards.'
 
+
+# GAME SETUP
+
+player_one = Player('One')
+player_two = Player('Two')
+
+new_deck = Deck ()
+new_deck.shuffle()
+
+for x in range(26):
+    player_one.add_cards(new_deck.deal_one())
+    player_two.add_cards(new_deck.deal_one())
+
+round_count = 0
+
+game_on = True
+while game_on:
+    round_count += 1
+    print(f'Round nuber {round_count}')
+
+    if len(player_one.all_cards) == 0:
+        print('Player one out of cards, Player two wins !! ')
+        game_on = False
+        break
+
+    if len(player_two.all_cards) == 0:
+        print('Player one out of cards, Player two wins !! ')
+        game_on = False
+        break
+
+
+
+
+
+
+
+
+
+
+
+
+
+'''
 new_deck = Deck()
 new_deck.shuffle()
-mycard = new_deck.deal_one()
 
-print(mycard)
-print(len(new_deck.all_cards))
+print(new_deck.deal_one())
 
+my_card = new_deck.deal_one()
 
 new_player = Player('Jose')
 
-new_player.add_cards(mycard)
-new_player.add_cards([mycard,mycard,mycard])
+new_player.add_cards(my_card)
 
 print(new_player)
-
+'''
