@@ -65,5 +65,8 @@ print(len(new_deck.all_cards))
 
 new_player = Player('Jose')
 
+new_player.add_cards(mycard)
+new_player.add_cards([mycard,mycard,mycard])
+
 print(new_player)
 
