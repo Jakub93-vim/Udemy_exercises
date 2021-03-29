@@ -32,6 +32,9 @@ class Player:
         self.bank_roll = self.bank_roll - int(bet)
         print(f'Your bankroll is {self.bank_roll}')
 
+    def __str__(self):
+        return f'You have cards {self.player_cards}'
+
 class Deck:
 
     def __init__(self):
@@ -55,10 +58,17 @@ print('Welcome to Blackjack, first place a bet and then we can start.\n'
 my_deck = Deck()
 my_deck.shuffle()
 
-player = Player ('Jack')
+player_jack = Player ('Jack')
 player_pc = Player ('PC')
-player.place_bet()
+player_jack.place_bet()
 
+
+player_jack.take_one(my_deck.deal_one())
+player_jack.take_one(my_deck.deal_one())
+
+print(player_jack.player_cards[0], '\n',player_jack.player_cards[1])
+
+print('Value of the cards is ', player_jack.player_cards[0].value + player_jack.player_cards[1].value )
 
 
 
