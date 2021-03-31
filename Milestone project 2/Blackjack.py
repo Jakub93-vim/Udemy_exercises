@@ -78,6 +78,38 @@ class Hand:
     def adjust_for_ace(self):
 
         if 'Ace' in self.card and self.value > 21:
+            pass
+
+class Chips:
+
+    def __init__(self):
+        self.total = 100
+        self.bet = 0
+
+    def win_bet(self):
+        return self.total + self.bet
+
+    def lose_bet(self):
+        return self.total - self.bet
+
+# FUNCTIONS
+
+def take_bet():
+
+    chips.bet = int(input('Place a bet: '))
+
+    try:
+        chips.bet = int(input('Place a bet: '))
+
+    except:
+
+        print('Put number')
+
+    else:
+        print('ok')
+
+
+take_bet()
 
 
 
