@@ -7,8 +7,6 @@ ranks = ('Two', 'Three', 'Four', 'Five', 'Six', 'Seven', 'Eight', 'Nine', 'Ten',
 values = {'Two':2, 'Three':3, 'Four':4, 'Five':5, 'Six':6, 'Seven':7, 'Eight':8, 'Nine':9, 'Ten':10, 'Jack':10,
          'Queen':10, 'King':10, 'Ace':11}
 
-playing = True
-
 class Card:
 
     def __init__(self,rank,suit):
@@ -102,6 +100,20 @@ def hit(deck, hand):
 
 def hit_or_stand(deck, hand):
 
+    global playing
+    playing = True
+    player_choice = ''
+
+    while playing == True:
+
+        print(f'Your cards have value {hand.value}')
+        player_choice = input('Do you want to hit or stand ? (H/S)')
+
+        if player_choice == 'H':
+            hit(deck, hand)
+        else:
+            playing = False
+
     pass
 
 
@@ -116,15 +128,11 @@ my_deck = Deck()
 my_deck.shuffle()
 my_hand = Hand()
 
-my_hand.add_card(my_deck.deal_one())
-print(my_hand.value)
-my_hand.add_card(my_deck.deal_one())
-print(my_hand.value)
-my_hand.add_card(my_deck.deal_one())
+hit_or_stand(my_deck,my_hand)
 
 
-print(my_hand.card[0],my_hand.card[1],my_hand.card[2])
-print(my_hand.value)
+#print(my_hand.card[0],my_hand.card[1],my_hand.card[2])
+#print(my_hand.value)
 
 
 
