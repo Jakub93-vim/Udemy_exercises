@@ -19,23 +19,6 @@ class Card:
     def __str__(self):
         return f'Card {self.rank} of {self.suit}'
 
-class Player:
-
-    def __init__(self,name):
-        self.name = name
-        self.player_cards = []
-        self.bank_roll = 1000
-
-    def take_one(self,new_card):
-        self.player_cards.append(new_card)
-
-    def place_bet(self):
-        bet = input(f'Bankroll is {self.bank_roll}, place a bet: ')
-        self.bank_roll = self.bank_roll - int(bet)
-        print(f'Your bankroll is {self.bank_roll}')
-
-    def __str__(self):
-        return f'You have cards {self.player_cards}'
 
 class Deck:
 
@@ -73,12 +56,14 @@ class Hand:
         for one_card in self.card:
             self.value += one_card.value
 
-        return self.value
+        if card.rank == 'Ace':
+            self.aces += 1
 
     def adjust_for_ace(self):
 
-        if 'Ace' in self.card and self.value > 21:
-            pass
+        while self.value > 21 and self.aces:
+            self.value -= 10
+            self.aces -= 1
 
 class Chips:
 
@@ -94,22 +79,35 @@ class Chips:
 
 # FUNCTIONS
 
-def take_bet():
+def take_bet(chips):
 
-    chips.bet = int(input('Place a bet: '))
+    while True:
+        try:
+            chips.bet = int(input('Place a bet: '))
 
-    try:
-        chips.bet = int(input('Place a bet: '))
+        except:
 
-    except:
+            print('Write only a number')
 
-        print('Put number')
+        else:
+            print('Bet accepted')
+            break
 
-    else:
-        print('ok')
+def hit(deck, hand):
+
+    hand.add_card(deck.deal_one())
+    hand.adjust_for_ace()
 
 
-take_bet()
+
+def hit_or_stand(deck, hand):
+
+    pass
+
+
+
+player_chips = Chips()
+take_bet(player_chips)
 
 
 
