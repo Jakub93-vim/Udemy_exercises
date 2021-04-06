@@ -102,17 +102,32 @@ def hit_or_stand(deck, hand):
 
     global playing
     playing = True
-    player_choice = ''
 
-    while playing == True:
+    while True:
 
-        print(f'Your cards have value {hand.value}')
+
         player_choice = input('Do you want to hit or stand ? (H/S)')
 
         if player_choice == 'H':
             hit(deck, hand)
-        else:
+            print(f'Your cards have value {hand.value}')
+
+        elif player_choice == 'S':
+            print('Player stands, dealer will play')
             playing = False
+
+        else:
+            print('Answer H or S please')
+            continue
+        break
+
+def show_some(player, dealer):
+    print("\nDealer's cards: ")
+    print(" <card hidden>")
+    print(*dealer.card)
+
+
+def show_all(player, dealer):
 
     pass
 
@@ -126,9 +141,13 @@ take_bet(player_chips)
 
 my_deck = Deck()
 my_deck.shuffle()
-my_hand = Hand()
+player = Hand()
+dealer = Hand()
+dealer.add_card(my_deck.deal_one())
 
-hit_or_stand(my_deck,my_hand)
+show_some(player,dealer)
+
+hit_or_stand(my_deck,player)
 
 
 #print(my_hand.card[0],my_hand.card[1],my_hand.card[2])
