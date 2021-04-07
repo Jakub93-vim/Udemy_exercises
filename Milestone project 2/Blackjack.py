@@ -70,10 +70,10 @@ class Chips:
         self.bet = 0
 
     def win_bet(self):
-        return self.total + self.bet
+        self.total += self.bet
 
     def lose_bet(self):
-        return self.total - self.bet
+       self.total -= self.bet
 
 # FUNCTIONS
 
@@ -124,17 +124,32 @@ def hit_or_stand(deck, hand):
 def show_some(player, dealer):
     print("\nDealer's cards: ")
     print(" <card hidden>")
-    print(*dealer.card)
+    print(dealer.card[1])
+    print("\nPlayer's cards: ")
+    print(*player.card, sep= '\n')
 
 
 def show_all(player, dealer):
+    print(f"\nDealer's cards, value is {dealer.value} ")
+    print(*dealer.card, sep='\n')
+    print(f"\nPlayer's cards, value is {player.value} ")
+    print(*player.card, sep='\n')
+
+def player_busts(player, dealer, chips):
+
+    print(f'Player busts, value of his cards is {player.value}\n '
+          f'dealer had {dealer.value} and chips of player are {chips.total}')
+
+def player_wins(player):
 
     pass
 
-
-
 player_chips = Chips()
 take_bet(player_chips)
+print(player_chips.total)
+player_chips.lose_bet()
+
+print(player_chips.total)
 
 
 
@@ -144,14 +159,18 @@ my_deck.shuffle()
 player = Hand()
 dealer = Hand()
 dealer.add_card(my_deck.deal_one())
+dealer.add_card(my_deck.deal_one())
+
+player.add_card(my_deck.deal_one())
+player.add_card(my_deck.deal_one())
 
 show_some(player,dealer)
 
+show_all(player,dealer)
+
 hit_or_stand(my_deck,player)
 
-
-#print(my_hand.card[0],my_hand.card[1],my_hand.card[2])
-#print(my_hand.value)
+player_busts(player,dealer,player_chips)
 
 
 
