@@ -7,6 +7,8 @@ ranks = ('Two', 'Three', 'Four', 'Five', 'Six', 'Seven', 'Eight', 'Nine', 'Ten',
 values = {'Two':2, 'Three':3, 'Four':4, 'Five':5, 'Six':6, 'Seven':7, 'Eight':8, 'Nine':9, 'Ten':10, 'Jack':10,
          'Queen':10, 'King':10, 'Ace':11}
 
+playing = True
+
 class Card:
 
     def __init__(self,rank,suit):
@@ -137,44 +139,79 @@ def show_all(player, dealer):
 
 def player_busts(player, dealer, chips):
 
+    chips.lose_bet()
     print(f'Player busts, value of his cards is {player.value}\n '
           f'dealer had {dealer.value} and chips of player are {chips.total}')
 
-def player_wins(player):
 
-    pass
+def player_wins(player, dealer, chips):
+
+    chips.win_bet()
+    print(f'Player wins, value of his cards is {player.value}\n '
+          f'dealer had {dealer.value} and chips of player are {chips.total}')
+
+
+def dealer_wins(player, dealer, chips):
+    chips.lose_bet()
+    print(f'Dealer wins, value of his cards is {dealer.value}\n '
+          f'player had {player.value} and chips of player are {chips.total}')
+
+
+def dealer_busts(player, dealer, chips):
+    chips.win_bet()
+    print(f'Dealer busts, value of his cards is {dealer.value}\n '
+          f'player had {player.value} and chips of player are {chips.total}')
+
+def push(player, dealer):
+
+    print('Player and dealer tie, its a push!')
+
+# GAME PLAY
+# ---------
+
+
+player = Hand()
+dealer = Hand()
+game_deck = Deck()
+game_deck.shuffle()
 
 player_chips = Chips()
 take_bet(player_chips)
-print(player_chips.total)
-player_chips.lose_bet()
 
-print(player_chips.total)
+player.add_card(game_deck.deal_one())
+player.add_card(game_deck.deal_one())
 
+dealer.add_card(game_deck.deal_one())
+dealer.add_card(game_deck.deal_one())
 
+show_some(player, dealer)
 
+while True:
 
-my_deck = Deck()
-my_deck.shuffle()
-player = Hand()
-dealer = Hand()
-dealer.add_card(my_deck.deal_one())
-dealer.add_card(my_deck.deal_one())
+    while playing == True
+        if player.value > 21:
+            player_busts(player,dealer,player_chips)
+            break
 
-player.add_card(my_deck.deal_one())
-player.add_card(my_deck.deal_one())
+        hit_or_stand(game_deck,player)
 
-show_some(player,dealer)
+    if dealer.value > player.value:
 
-show_all(player,dealer)
+        dealer_wins(player, dealer, player_chips)
 
-hit_or_stand(my_deck,player)
+while dealer.value < player.value:
 
-player_busts(player,dealer,player_chips)
+    print('while jede')
 
+    dealer.add_card(game_deck.deal_one())
 
+    if dealer.value > 21:
+        dealer_busts(player,dealer,player_chips)
+        break
 
+    elif dealer.value == player.value:
 
+        push(player,dealer)
 
-
-
+    else:
+        player_wins()
