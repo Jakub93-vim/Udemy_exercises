@@ -169,49 +169,67 @@ def push(player, dealer):
 # GAME PLAY
 # ---------
 
-
-player = Hand()
-dealer = Hand()
-game_deck = Deck()
-game_deck.shuffle()
-
-player_chips = Chips()
-take_bet(player_chips)
-
-player.add_card(game_deck.deal_one())
-player.add_card(game_deck.deal_one())
-
-dealer.add_card(game_deck.deal_one())
-dealer.add_card(game_deck.deal_one())
-
-show_some(player, dealer)
-
 while True:
+    player = Hand()
+    dealer = Hand()
+    game_deck = Deck()
+    game_deck.shuffle()
 
-    while playing == True
+    player_chips = Chips()
+    take_bet(player_chips)
+
+    player.add_card(game_deck.deal_one())
+    player.add_card(game_deck.deal_one())
+
+    dealer.add_card(game_deck.deal_one())
+    dealer.add_card(game_deck.deal_one())
+
+    show_some(player, dealer)
+
+
+    while playing :
+
+
+        hit_or_stand(game_deck,player)
+
+
         if player.value > 21:
             player_busts(player,dealer,player_chips)
             break
 
-        hit_or_stand(game_deck,player)
+    if player.value <= 21:
 
-    if dealer.value > player.value:
+        while dealer.value < 17:
+            dealer.add_card(game_deck.deal_one())
 
-        dealer_wins(player, dealer, player_chips)
+        show_all(player,dealer)
 
-while dealer.value < player.value:
+        if dealer.value > 21:
 
-    print('while jede')
+            dealer_busts(player, dealer, player_chips)
 
-    dealer.add_card(game_deck.deal_one())
+        elif dealer.value > player.value:
 
-    if dealer.value > 21:
-        dealer_busts(player,dealer,player_chips)
-        break
+            dealer_wins(player,dealer,player_chips)
 
-    elif dealer.value == player.value:
+        elif player.value > dealer.value:
 
-        push(player,dealer)
+            player_wins(player, dealer, player_chips)
+
+        else:
+
+            push(player,dealer)
+
+
+    print('Player has ', player_chips.total, 'chips.')
+
+    play_again = input('You want again ? (Y/N)')
+
+    if play_again == 'Y':
+
+        playing = True
+        continue
 
     else:
-        player_wins()
+        ('Thank you, bye bye.')
+        break
