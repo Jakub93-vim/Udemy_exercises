@@ -231,5 +231,5 @@ while True:
         continue
 
     else:
-        ('Thank you, bye bye.')
+        print ('Thank you, bye bye.')
         break
