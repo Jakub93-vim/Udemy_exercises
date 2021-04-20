@@ -1,4 +1,4 @@
-import random
+import random_check
 
 suits = ('Hearts', 'Diamonds', 'Spades', 'Clubs')
 ranks = ('Two', 'Three', 'Four', 'Five', 'Six', 'Seven', 'Eight', 'Nine', 'Ten', 'Jack', 'Queen', 'King', 'Ace')
@@ -29,7 +29,7 @@ class Deck:
 
     def shuffle(self):
 
-        random.shuffle(self.all_cards)
+        random_check.shuffle(self.all_cards)
 
     def deal_one(self):
 

@@ -14,7 +14,7 @@ for x in gensquares(10):
 
 print('')
 
-import random
+import random_check
 global count
 
 def ran_in_range(low, high, count):
@@ -22,7 +22,7 @@ def ran_in_range(low, high, count):
 
     for num in range(count):
 
-        yield random.randint(low,high)
+        yield random_check.randint(low, high)
 
 for x in ran_in_range(5,200,5):
 
