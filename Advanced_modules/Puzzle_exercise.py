@@ -20,6 +20,6 @@ for folder, sub_folders, files in os.walk(os.getcwd()):
         f = open(os.path.join(folder,file), 'r')
         content= f.read()
 
-        if re.findall('\d\d\d-\d\d\d-\d\d\d\d',content):
+        if re.findall('\d{3}-\d{3}-\d{4}',content):
             number = re.findall('\d\d\d-\d\d\d-\d\d\d\d',content)
             print(f'Number is in {file} and it is {number}')
