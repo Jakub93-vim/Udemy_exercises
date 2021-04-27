@@ -1,57 +1,36 @@
 #Examiner
 #--------
-import time
+import time, random
 
-vocabulary = [['que','that'],['para','for'],['aquí','here']]
+vocabulary = [['que','that'],['para','for'],['aquí','here'],['caballo','horse'],
+              ['madera','wood'],['carta','letter'],['canción','song']]
 
 class Examine:
 
     def __init__(self,time_value):
 
-        self.countdown = time_value
+        self.time_value = time_value
 
-    def countdown(self,t):
+    def countdown(self, t):
         while t > 0:
-            print(t)
+            print("\r", 'Remaining time:', t, end="")
             t -= 1
             time.sleep(1)
+        print("\r", '', end="")
 
     def examine_me(self):
+        
+        rand_int = random.randint(0,len(vocabulary)-1)
+        check = input(f'Translate to english: {vocabulary[rand_int][0]}')
 
-        check = input(f'Translate to english: {vocabulary[0][0]}')
 
-
-        if check == vocabulary[0][1]:
+        if check == vocabulary[rand_int][1]:
             print("You are right !")
         else:
             print("No")
 
 first_examine = Examine(10)
 
-#first_examine.examine_me()
+first_examine.examine_me()
 
-
-
-def countdown(t):
-    print(t)
-    while t > 0:
-        print('Hello', t,end="\r")
-        t -= 1
-        time.sleep(1)
-        
-
-
-def countdown2(t):
-    while t:
-        mins, secs = divmod(t, 60)
-        timer = '{:02d}:{:02d}'.format(mins, secs)
-        print("\r",timer, end='')
-        time.sleep(1)
-        t -= 1
-    print('Blast Off!!!')
-    
-countdown2(5)
-    
-print("timer", end="\r")
-print("ter")
-print("timefgfgr")
+#first_examine.countdown(7)
