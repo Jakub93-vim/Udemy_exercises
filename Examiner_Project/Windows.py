@@ -1,14 +1,32 @@
+import threading
 import time
-from threading import Thread
 
-answer = None
+class DomainOperations:
 
-def check():
-    time.sleep(5)
-    if answer != None:
-        return
-    print("Too Slow")
+    def __init__(self):
+        self.domain_ip = ''
+        self.website_thumbnail = ''
 
-Thread(target = check).start()
+    def resolve_domain(self):
+        self.domain_ip = 'foo'
+        time.sleep(5)
+        print('hello')
+        time.sleep(1)
+        print('come on')
 
-answer = input("Input something: ")
+    def generate_website_thumbnail(self):
+        self.website_thumbnail= 'bar'
+        print('the second thread')
+
+    def run(self):
+        t1 = threading.Thread(target=self.resolve_domain)
+        t2 = threading.Thread(target=self.generate_website_thumbnail)
+        t1.start()
+        t2.start()
+        t1.join()
+        t2.join()
+        print(self.domain_ip, self.website_thumbnail)
+
+if __name__ == '__main__':
+    d = DomainOperations()
+    d.run()

@@ -11,13 +11,14 @@ import threading
 vocabulary = [['que','that'],['para','for'],['aquí','here'],['caballo','horse'],
               ['madera','wood'],['carta','letter'],['canción','song']]
 
-class Examine(threading.Thread):
+class Examine:
 
     def __init__(self):
-        threading.Thread.__init__(self)
+        self.time = ''
 
 
-    def countdown(self, t):
+    def countdown(self):
+        self.count = 'foo'
         '''
         while t > 0:
             print("\r", 'Remaining time:', t, end="")
@@ -31,6 +32,7 @@ class Examine(threading.Thread):
         print('come on')
 
     def examine_me(self):
+        self.exa = 'fool'
         '''
         rand_int = random.randint(0,len(vocabulary)-1)
         check = input(f'Translate {vocabulary[rand_int][0]} to english: ')
@@ -43,10 +45,11 @@ class Examine(threading.Thread):
         '''
 
         print('the second thread')
+
     def run(self):
 
-        t1 = threading.Thread(target=self.countdown(5))
-        t2 = threading.Thread(target=self.examine_me())
+        t1 = threading.Thread(target=self.countdown)
+        t2 = threading.Thread(target=self.examine_me)
 
         t1.start()
         t2.start()
