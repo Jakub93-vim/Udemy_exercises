@@ -1,28 +1,37 @@
 #Examiner
 #--------
+
+
 import time, random
 from PyQt5 import QtWidgets
 from PyQt5.QtWidgets import QApplication, QMainWindow
 import sys
+import threading
 
 vocabulary = [['que','that'],['para','for'],['aquí','here'],['caballo','horse'],
               ['madera','wood'],['carta','letter'],['canción','song']]
 
-class Examine:
+class Examine(threading.Thread):
 
-    def __init__(self,time_value):
+    def __init__(self):
+        threading.Thread.__init__(self)
 
-        self.time_value = time_value
 
     def countdown(self, t):
+        '''
         while t > 0:
             print("\r", 'Remaining time:', t, end="")
             t -= 1
             time.sleep(1)
         print("\r", '', end="")
+        '''
+        time.sleep(5)
+        print('hello')
+        time.sleep(1)
+        print('come on')
 
     def examine_me(self):
-        
+        '''
         rand_int = random.randint(0,len(vocabulary)-1)
         check = input(f'Translate {vocabulary[rand_int][0]} to english: ')
 
@@ -30,23 +39,20 @@ class Examine:
         if check == vocabulary[rand_int][1]:
             print("You are right !")
         else:
-            print(f"No, the translation is {vocabulary[rand_int][1]}")
+            print(f"No, the translation is: {vocabulary[rand_int][1]}")
+        '''
 
-while True:
+        print('the second thread')
+    def run(self):
 
-    first_examine = Examine(10)
+        t1 = threading.Thread(target=self.countdown(5))
+        t2 = threading.Thread(target=self.examine_me())
 
-    first_examine.examine_me()
+        t1.start()
+        t2.start()
 
-#first_examine.countdown(7)
+        t1.join()
+        t2.join()
 
-def window():
-    app = QApplication(sys.argv)
-    win = QMainWindow()
-    win.setGeometry(200, 200, 300, 300)
-    win.setWindowTitle("Examiner")
-
-    win.show()
-    sys.exit(app.exec_())
-
-window()
+first_examine = Examine()
+first_examine.run()
