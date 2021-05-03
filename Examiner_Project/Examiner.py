@@ -8,6 +8,7 @@ from PyQt5.QtWidgets import QApplication, QMainWindow
 import sys
 import threading
 import time, random
+import Database
 
 vocabulary = [['que','that'],['para','for'],['aquí','here'],['caballo','horse'],
               ['madera','wood'],['carta','letter'],['canción','song']]
@@ -53,19 +54,19 @@ class Vocabulary:
 
     def __init__(self):
 
-        self.new_word = []
+        self.english = ''
+        self.spanish = ''
 
     def add_word(self):
 
-        self.new_word.append(input('Write spanish meaning'))
-        self.new_word.append(input('Write english menaing'))
+        self.spanish = input('Write spanish meaning: ')
+        self.english = input('Write english menaing: ')
 
-        vocabulary.append(self.new_word)
-        print(f'The word {self.new_word} was added')
+        Database.insert_value(self.spanish, self.english)
 
     def check_vocabulary(self):
 
-        return vocabulary
+        return Database.show_vocabulary()
 
 
 #first_examine = Examine()
@@ -73,5 +74,8 @@ class Vocabulary:
 
 add_vocab = Vocabulary()
 
-add_vocab.add_word()
-print(add_vocab.check_vocabulary())
+#add_vocab.add_word()
+add_vocab.check_vocabulary()
+#add_vocab.add_word()
+
+#Database.insert_value("dos", "two")
