@@ -41,3 +41,9 @@ def show_vocabulary():
     for x in mycursor.fetchall():
         print(x)
 
+def return_words():
+
+    mycursor.execute("SELECT * FROM Vocabulary ORDER BY RAND() LIMIT 1")
+    word = mycursor.fetchone()
+
+    return word[0:2]

@@ -2,16 +2,13 @@
 #--------
 
 
-
 from PyQt5 import QtWidgets
 from PyQt5.QtWidgets import QApplication, QMainWindow
 import sys
 import threading
-import time, random
+import time
 import Database
 
-vocabulary = [['que','that'],['para','for'],['aquí','here'],['caballo','horse'],
-              ['madera','wood'],['carta','letter'],['canción','song']]
 
 class Examine:
 
@@ -29,14 +26,15 @@ class Examine:
 
     def examine_me(self):
 
-        rand_int = random.randint(0,len(vocabulary)-1)
-        check = input(f'Translate {vocabulary[rand_int][0]} to english: ')
+        spanish_word, english_word = Database.return_words()[0:2]
+
+        check = input(f'Translate {spanish_word} to english: ')
 
 
-        if check == vocabulary[rand_int][1]:
+        if check == english_word:
             print("You are right !")
         else:
-            print(f"No, the translation is: {vocabulary[rand_int][1]}")
+            print(f"No, the translation is: {english_word}")
 
 
     def run(self):
@@ -69,13 +67,13 @@ class Vocabulary:
         return Database.show_vocabulary()
 
 
-#first_examine = Examine()
-#first_examine.run()
+first_examine = Examine()
+first_examine.examine_me()
 
-add_vocab = Vocabulary()
+#add_vocab = Vocabulary()
 
 #add_vocab.add_word()
-add_vocab.check_vocabulary()
+#add_vocab.check_vocabulary()
 #add_vocab.add_word()
 
 #Database.insert_value("dos", "two")
