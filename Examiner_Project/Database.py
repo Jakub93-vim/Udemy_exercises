@@ -31,7 +31,20 @@ def return_words():
 
 def verify_translation(spanish_meaning):
 
-    mycursor.execute("SELECT * FROM new_vocabulary ORDER BY RAND() LIMIT 1")
+    name = spanish_meaning
+    mycursor.execute("SELECT * FROM new_vocabulary WHERE Name = %s", (name,))
+    result = mycursor.fetchall()
+    print (result)
+    
+#verify_translation("bonita")
+
+#name = "spanish_meaning"
+
+mycursor.execute("SELECT * FROM new_vocabulary WHERE spanish = 'nos'")
+result = mycursor.fetchall()
+print (result)
+
+
 
 #CREATE TABLE
 #mycursor.execute("CREATE TABLE Vocabulary (spanish VARCHAR(50), enslish VARCHAR(50), wordID int PRIMARY KEY AUTO_INCREMENT)")
@@ -47,7 +60,12 @@ def verify_translation(spanish_meaning):
 
 #for row in result:
 #    print(row)
-    #print("\n")
+#    print("\n")
+
+#SHOW COLUMNS
+#mycursor.execute("SHOW COLUMNS FROM new_vocabulary")
+#result = mycursor.fetchall()
+#print(result)
 
 #INSERT
 #mycursor.execute("INSERT INTO Vocabulary (spanish, english) VALUES (%s, %s)", ("hola", "hello"))
