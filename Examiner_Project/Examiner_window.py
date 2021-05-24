@@ -9,6 +9,7 @@
 
 
 from PyQt5 import QtCore, QtGui, QtWidgets
+import Examiner
 
 
 class Ui_MainWindow(object):
@@ -28,9 +29,15 @@ class Ui_MainWindow(object):
         self.lineEdit = QtWidgets.QLineEdit(self.centralwidget)
         self.lineEdit.setGeometry(QtCore.QRect(310, 160, 113, 22))
         self.lineEdit.setObjectName("lineEdit")
+
         self.spanish_word = QtWidgets.QLabel(self.centralwidget)
         self.spanish_word.setGeometry(QtCore.QRect(200, 170, 55, 16))
         self.spanish_word.setObjectName("spanish_word")
+
+        self.check_of_translation = QtWidgets.QLabel(self.centralwidget)
+        self.check_of_translation.setGeometry(QtCore.QRect(320, 130, 55, 16))
+        self.check_of_translation.setObjectName("check_of_translation")
+
         MainWindow.setCentralWidget(self.centralwidget)
         self.menubar = QtWidgets.QMenuBar(MainWindow)
         self.menubar.setGeometry(QtCore.QRect(0, 0, 833, 26))
@@ -39,16 +46,32 @@ class Ui_MainWindow(object):
         self.statusbar = QtWidgets.QStatusBar(MainWindow)
         self.statusbar.setObjectName("statusbar")
         MainWindow.setStatusBar(self.statusbar)
-
         self.retranslateUi(MainWindow)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
+
+        self.Test_me.clicked.connect(self.show_spanish_word)
+
+        self.lineEdit.returnPressed.connect(self.check_the_translation())
 
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
         MainWindow.setWindowTitle(_translate("MainWindow", "MainWindow"))
         self.Test_me.setText(_translate("MainWindow", "Test me !"))
-        self.label1.setText(_translate("MainWindow", "Translate to english"))
+        self.label1.setText(_translate("MainWindow", "Translate to english:"))
         self.spanish_word.setText(_translate("MainWindow", "TextLabel"))
+        self.check_of_translation.setText(_translate("MainWindow", "Evaluation"))
+
+    def check_the_translation(self):
+
+        if    self.lineEdit.text() ==
+
+    def show_spanish_word(self):
+        self.spanish_word.setText(Examiner.examine_object.return_spanish_word()[0])
+        self.update_label_spanish_word()
+
+
+    def update_label_spanish_word(self):
+        self.spanish_word.adjustSize()
 
 
 if __name__ == "__main__":
@@ -59,3 +82,5 @@ if __name__ == "__main__":
     ui.setupUi(MainWindow)
     MainWindow.show()
     sys.exit(app.exec_())
+
+

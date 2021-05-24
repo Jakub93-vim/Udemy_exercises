@@ -36,6 +36,19 @@ class Examine:
         else:
             print(f"No, the translation is: {english_word}")
 
+    def return_spanish_word(self):
+
+        spanish_word = Database.return_words()[0]
+
+        return spanish_word
+
+    def verify_translation(self, spanish_meaning):
+
+
+
+
+
+
 
     def run(self):
 
@@ -67,8 +80,13 @@ class Vocabulary:
         return Database.show_vocabulary()
 
 
-first_examine = Examine()
-first_examine.examine_me()
+examine_object = Examine()
+#first_examine.examine_me()
+examine_object.return_spanish_word()
+vocabulary = Vocabulary()
+#vocabulary.check_vocabulary()
+#vocabulary.add_word()
+
 
 #add_vocab = Vocabulary()
 
