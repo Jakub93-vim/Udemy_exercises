@@ -32,17 +32,12 @@ def return_words():
 def verify_translation(spanish_meaning):
 
     name = spanish_meaning
-    mycursor.execute("SELECT * FROM new_vocabulary WHERE Name = %s", (name,))
-    result = mycursor.fetchall()
-    print (result)
-    
-#verify_translation("bonita")
-
-#name = "spanish_meaning"
-
-mycursor.execute("SELECT * FROM new_vocabulary WHERE spanish = 'nos'")
-result = mycursor.fetchall()
-print (result)
+    if name != "":
+        mycursor.execute("SELECT * FROM new_vocabulary WHERE spanish = %s", (name,))
+        result = mycursor.fetchall()
+        return result[0][1]
+    else:
+        pass
 
 
 

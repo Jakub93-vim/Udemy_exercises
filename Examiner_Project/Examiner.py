@@ -42,13 +42,6 @@ class Examine:
 
         return spanish_word
 
-    def verify_translation(self, spanish_meaning):
-
-
-
-
-
-
 
     def run(self):
 

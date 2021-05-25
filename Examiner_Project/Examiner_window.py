@@ -9,7 +9,7 @@
 
 
 from PyQt5 import QtCore, QtGui, QtWidgets
-import Examiner
+import Examiner, Database
 
 
 class Ui_MainWindow(object):
@@ -51,7 +51,7 @@ class Ui_MainWindow(object):
 
         self.Test_me.clicked.connect(self.show_spanish_word)
 
-        self.lineEdit.returnPressed.connect(self.check_the_translation())
+        self.lineEdit.returnPressed.connect(lambda: self.check_the_translation())
 
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
@@ -63,10 +63,27 @@ class Ui_MainWindow(object):
 
     def check_the_translation(self):
 
-        if    self.lineEdit.text() ==
+        print (self.lineEdit.text())
+        print(Database.verify_translation(self.lineEdit.text()))
+        try:
+            if self.lineEdit.text() == Database.verify_translation(self.lineEdit.text()):
+                print ('spravne')
+            else:
+                print('spatne')
+            #print (Database.verify_translation(to_verify))
+        except:
+            self.check_of_translation.setText("Wrong translation ")
+            self.check_of_translation.adjustSize()
 
+        '''
+        if  self.lineEdit.text() == Database.verify_translation(self.lineEdit.text()):
+            print('yes')
+
+        else:
+            print("no")
+        '''
     def show_spanish_word(self):
-        self.spanish_word.setText(Examiner.examine_object.return_spanish_word()[0])
+        self.spanish_word.setText(Examiner.examine_object.return_spanish_word())
         self.update_label_spanish_word()
 
 
@@ -82,5 +99,7 @@ if __name__ == "__main__":
     ui.setupUi(MainWindow)
     MainWindow.show()
     sys.exit(app.exec_())
+
+
 
 
