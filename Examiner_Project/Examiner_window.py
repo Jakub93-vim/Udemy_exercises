@@ -55,7 +55,7 @@ class Ui_MainWindow(object):
 
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
-        MainWindow.setWindowTitle(_translate("MainWindow", "MainWindow"))
+        MainWindow.setWindowTitle(_translate("MainWindow", "Examiner"))
         self.Test_me.setText(_translate("MainWindow", "Test me !"))
         self.label1.setText(_translate("MainWindow", "Translate to english:"))
         self.spanish_word.setText(_translate("MainWindow", "TextLabel"))
@@ -63,25 +63,23 @@ class Ui_MainWindow(object):
 
     def check_the_translation(self):
 
-        print (self.lineEdit.text())
-        print(Database.verify_translation(self.lineEdit.text()))
+        #print (self.spanish_word.text())
+        #print(Database.verify_translation(self.lineEdit.text()))
         try:
-            if self.lineEdit.text() == Database.verify_translation(self.lineEdit.text()):
-                print ('spravne')
+            if self.spanish_word.text() == Database.verify_translation(self.lineEdit.text()):
+                self.check_of_translation.setText("Right translation ")
+                self.check_of_translation.adjustSize()
             else:
-                print('spatne')
+                self.check_of_translation.setText("Wrong translation ")
+                self.check_of_translation.adjustSize()
             #print (Database.verify_translation(to_verify))
         except:
             self.check_of_translation.setText("Wrong translation ")
             self.check_of_translation.adjustSize()
 
-        '''
-        if  self.lineEdit.text() == Database.verify_translation(self.lineEdit.text()):
-            print('yes')
+        self.show_spanish_word()
 
-        else:
-            print("no")
-        '''
+
     def show_spanish_word(self):
         self.spanish_word.setText(Examiner.examine_object.return_spanish_word())
         self.update_label_spanish_word()

@@ -33,9 +33,9 @@ def verify_translation(spanish_meaning):
 
     name = spanish_meaning
     if name != "":
-        mycursor.execute("SELECT * FROM new_vocabulary WHERE spanish = %s", (name,))
+        mycursor.execute("SELECT * FROM new_vocabulary WHERE english = %s", (name,))
         result = mycursor.fetchall()
-        return result[0][1]
+        return result[0][0]
     else:
         pass
 
