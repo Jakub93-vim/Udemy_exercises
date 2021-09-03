@@ -29,15 +29,20 @@ def return_words():
 
     return word[0:2]
 
-def verify_translation(spanish_meaning):
+def english_in_spanish_out(english_meaning):
 
-    name = spanish_meaning
-    if name != "":
-        mycursor.execute("SELECT * FROM new_vocabulary WHERE english = %s", (name,))
-        result = mycursor.fetchall()
-        return result[0][0]
-    else:
-        pass
+    try:
+
+        name = english_meaning
+        if name != "":
+            mycursor.execute("SELECT * FROM new_vocabulary WHERE english = %s", (name,))
+            result = mycursor.fetchall()
+            return result[0][0]
+    except:
+        return 'nothing'
+
+print(english_in_spanish_out("we"))
+
 
 
 

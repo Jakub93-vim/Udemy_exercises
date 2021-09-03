@@ -18,6 +18,7 @@ class Ui_MainWindow(object):
         MainWindow.resize(833, 533)
         self.centralwidget = QtWidgets.QWidget(MainWindow)
         self.centralwidget.setObjectName("centralwidget")
+
         self.Test_me = QtWidgets.QPushButton(self.centralwidget)
         self.Test_me.setGeometry(QtCore.QRect(60, 120, 93, 28))
         self.Test_me.setObjectName("Test_me")
@@ -34,6 +35,10 @@ class Ui_MainWindow(object):
         self.spanish_word.setGeometry(QtCore.QRect(200, 170, 55, 16))
         self.spanish_word.setObjectName("spanish_word")
 
+        self.right_translation = QtWidgets.QLabel(self.centralwidget)
+        self.right_translation.setGeometry(QtCore.QRect(480, 170, 100, 16))
+        self.right_translation.setObjectName("right_translation")
+
         self.check_of_translation = QtWidgets.QLabel(self.centralwidget)
         self.check_of_translation.setGeometry(QtCore.QRect(320, 130, 55, 16))
         self.check_of_translation.setObjectName("check_of_translation")
@@ -49,6 +54,8 @@ class Ui_MainWindow(object):
         self.retranslateUi(MainWindow)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
 
+        self.right_translation.setHidden(True)
+
         self.Test_me.clicked.connect(self.show_spanish_word)
 
         self.lineEdit.returnPressed.connect(lambda: self.check_the_translation())
@@ -60,22 +67,28 @@ class Ui_MainWindow(object):
         self.label1.setText(_translate("MainWindow", "Translate to english:"))
         self.spanish_word.setText(_translate("MainWindow", "TextLabel"))
         self.check_of_translation.setText(_translate("MainWindow", "Evaluation"))
+        self.right_translation.setText(_translate("MainWindow", "Right translation was"))
 
     def check_the_translation(self):
 
         #print (self.spanish_word.text())
         #print(Database.verify_translation(self.lineEdit.text()))
+        #english_translation = Database.english_in_spanish_out(self.lineEdit.text())
         try:
-            if self.spanish_word.text() == Database.verify_translation(self.lineEdit.text()):
+            if self.spanish_word.text() == Database.english_in_spanish_out(self.lineEdit.text()):
                 self.check_of_translation.setText("Right translation ")
                 self.check_of_translation.adjustSize()
             else:
                 self.check_of_translation.setText("Wrong translation ")
                 self.check_of_translation.adjustSize()
+                self.right_translation.setHidden(False)
+                self.right_translation.setText("Righ translation was", Database.english_in_spanish_out(self.lineEdit.text()) )
             #print (Database.verify_translation(to_verify))
         except:
             self.check_of_translation.setText("Wrong translation ")
-            self.check_of_translation.adjustSize()
+            self.right_translation.adjustSize()
+            self.right_translation.setHidden(False)
+            self.right_translation.setText("Righ translation was", Database.english_in_spanish_out("we"))
 
         self.show_spanish_word()
 
@@ -97,6 +110,8 @@ if __name__ == "__main__":
     ui.setupUi(MainWindow)
     MainWindow.show()
     sys.exit(app.exec_())
+
+
 
 
 
