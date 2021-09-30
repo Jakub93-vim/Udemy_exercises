@@ -21,7 +21,7 @@ class Ui_MainWindow(object):
 
         self.Test_me = QtWidgets.QPushButton(self.centralwidget)
         self.Test_me.setGeometry(QtCore.QRect(60, 120, 93, 28))
-        self.Test_me.setObjectName("Test_me")
+        self.Test_me.setObjectName("Test_me!")
 
         self.label1 = QtWidgets.QLabel(self.centralwidget)
         self.label1.setGeometry(QtCore.QRect(60, 160, 131, 31))

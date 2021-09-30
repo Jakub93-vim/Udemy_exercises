@@ -42,18 +42,6 @@ class Examine:
 
         return spanish_word
 
-
-    def run(self):
-
-        t1 = threading.Thread(target=self.countdown)
-        t2 = threading.Thread(target=self.examine_me)
-
-        t1.start()
-        t2.start()
-
-        t1.join()
-        t2.join()
-
 class Vocabulary:
 
     def __init__(self):
