@@ -17,10 +17,35 @@ class Line:
 
         return slop
 
-coor1 = (5,10)
-coor2 = (7,9)
+class Cylinder:
+
+    def __init__(self, height, rad):
+        pass
+
+    def volume(self):
+
+        vol = math.pi*rad**2
+
+        return vol
+
+    def area(self):
+
+        are = math.pi*rad*2
+
+        return are
+
+
+
+coor1 = (3,2)
+coor2 = (8,10)
 
 li = Line (coor1,coor2)
 
 print (li.distance())
 print (li.slope())
+
+height = 2
+rad = 3
+c = Cylinder (height,rad)
+print ('Volume is ', c.volume())
+print ('Area is ', c.area())
