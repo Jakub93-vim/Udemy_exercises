@@ -74,18 +74,16 @@ class Ui_MainWindow(object):
         #print (self.spanish_word.text())
         #print(Database.verify_translation(self.lineEdit.text()))
         #english_translation = Database.english_in_spanish_out(self.lineEdit.text())
-        try:
-            if self.spanish_word.text() == Database.english_in_spanish_out(self.lineEdit.text()):
-                self.check_of_translation.setText("Right translation ")
-                self.check_of_translation.adjustSize()
-            else:
-                self.check_of_translation.setText("Wrong translation ")
-                self.check_of_translation.adjustSize()
-                self.right_translation.setHidden(False)
-                self.right_translation.setText("Righ translation was", Database.english_in_spanish_out(self.lineEdit.text()) )
-            #print (Database.verify_translation(to_verify))
-        except:
-            print ('Something went wrong')
+
+        if self.spanish_word.text() == Database.english_in_spanish_out(self.lineEdit.text()):
+            self.check_of_translation.setText("Right translation ")
+            self.check_of_translation.adjustSize()
+        else:
+            self.check_of_translation.setText("Wrong translation ")
+            self.check_of_translation.adjustSize()
+            self.right_translation.setHidden(False)
+            self.right_translation.setText("Righ translation was", Database.english_in_spanish_out(self.lineEdit.text()) )
+            self.right_translation.adjustSize()
 
         self.show_spanish_word()
 

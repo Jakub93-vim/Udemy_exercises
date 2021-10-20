@@ -35,18 +35,10 @@ class Vocabulary:
 
         Database.insert_value(self.spanish, self.english)
 
-    def check_vocabulary(self):
-
-        return Database.show_vocabulary()
-
 
 examine_object = Examine()
 #first_examine.examine_me()
 examine_object.return_spanish_word()
-vocabulary = Vocabulary()
-#vocabulary.check_vocabulary()
-#vocabulary.add_word()
-
 
 #add_vocab = Vocabulary()
 
