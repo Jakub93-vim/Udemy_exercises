@@ -41,7 +41,9 @@ def english_in_spanish_out(english_meaning):
     except:
         return 'nothing'
 
-print(english_in_spanish_out("we"))
+#print(english_in_spanish_out("wee"))
+
+#print(show_vocabulary())
 
 
 
