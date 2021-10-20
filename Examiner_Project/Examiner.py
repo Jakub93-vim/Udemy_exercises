@@ -15,27 +15,6 @@ class Examine:
     def __init__(self):
         self.time = ''
 
-
-    def countdown(self):
-        t = 5
-        while t > 0:
-            print("\r", 'Remaining time:', t, end="")
-            t -= 1
-            time.sleep(1)
-        print("\r", 'Time ended', end="")
-
-    def examine_me(self):
-
-        spanish_word, english_word = Database.return_words()[0:2]
-
-        check = input(f'Translate {spanish_word} to english: ')
-
-
-        if check == english_word:
-            print("You are right !")
-        else:
-            print(f"No, the translation is: {english_word}")
-
     def return_spanish_word(self):
 
         spanish_word = Database.return_words()[0]
@@ -76,3 +55,5 @@ vocabulary = Vocabulary()
 #add_vocab.add_word()
 
 #Database.insert_value("dos", "two")
+
+
