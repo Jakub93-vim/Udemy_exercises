@@ -59,6 +59,7 @@ class Ui_MainWindow(object):
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
 
         self.right_translation.setHidden(True)
+        self.english_word.setHidden(True)
 
         self.Start.clicked.connect(self.show_spanish_word)
         self.Start.clicked.connect(self.show_english_translation_check)
@@ -79,15 +80,16 @@ class Ui_MainWindow(object):
 
     def check_the_translation(self):
 
-        #print (self.spanish_word.text())
-        #print(Database.verify_translation(self.lineEdit.text()))
-        #english_translation = Database.english_in_spanish_out(self.lineEdit.text())
+        self.right_translation.setHidden(True)
 
         if self.spanish_word.text() == Database.english_in_spanish_out(self.user_translation.text()):
             self.check_of_translation.setText("Right translation ")
+            self.check_of_translation.setStyleSheet("color:green")
             self.check_of_translation.adjustSize()
         else:
             self.check_of_translation.setText("Wrong translation ")
+            self.check_of_translation.setFont(QtGui.QFont("Times",weight=QtGui.QFont.Bold))
+            self.check_of_translation.setStyleSheet("color:red")
             self.check_of_translation.adjustSize()
             self.right_translation.setHidden(False)
             self.right_translation.setText("Righ translation was " + Database.spanish_in_english_out(self.spanish_word.text()))
