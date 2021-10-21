@@ -41,6 +41,15 @@ def english_in_spanish_out(english_meaning):
     except:
         return 'nothing'
 
+def spanish_in_english_out(spanish_meaning):
+
+    name = spanish_meaning
+
+    if name !="":
+        mycursor.execute("SELECT * FROM new_vocabulary WHERE spanish = %s", (name,))
+        result = mycursor.fetchall()[0][1]
+        return result
+
 #print(english_in_spanish_out("wee"))
 
 #print(show_vocabulary())

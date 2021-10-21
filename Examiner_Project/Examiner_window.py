@@ -19,21 +19,25 @@ class Ui_MainWindow(object):
         self.centralwidget = QtWidgets.QWidget(MainWindow)
         self.centralwidget.setObjectName("centralwidget")
 
-        self.Test_me = QtWidgets.QPushButton(self.centralwidget)
-        self.Test_me.setGeometry(QtCore.QRect(60, 120, 93, 28))
-        self.Test_me.setObjectName("Test_me!")
+        self.Start = QtWidgets.QPushButton(self.centralwidget)
+        self.Start.setGeometry(QtCore.QRect(60, 120, 93, 28))
+        self.Start.setObjectName("Start")
 
         self.label1 = QtWidgets.QLabel(self.centralwidget)
         self.label1.setGeometry(QtCore.QRect(60, 160, 131, 31))
         self.label1.setObjectName("label1")
 
-        self.lineEdit = QtWidgets.QLineEdit(self.centralwidget)
-        self.lineEdit.setGeometry(QtCore.QRect(310, 160, 113, 22))
-        self.lineEdit.setObjectName("lineEdit")
+        self.user_translation = QtWidgets.QLineEdit(self.centralwidget)
+        self.user_translation.setGeometry(QtCore.QRect(310, 160, 113, 22))
+        self.user_translation.setObjectName("user_translation")
 
         self.spanish_word = QtWidgets.QLabel(self.centralwidget)
-        self.spanish_word.setGeometry(QtCore.QRect(200, 170, 55, 16))
+        self.spanish_word.setGeometry(QtCore.QRect(200, 168, 90, 20))
         self.spanish_word.setObjectName("spanish_word")
+
+        self.english_word = QtWidgets.QLabel(self.centralwidget)
+        self.english_word.setGeometry(QtCore.QRect(200, 220, 90, 20))
+        self.english_word.setObjectName("english_word")
 
         self.right_translation = QtWidgets.QLabel(self.centralwidget)
         self.right_translation.setGeometry(QtCore.QRect(480, 170, 100, 16))
@@ -56,16 +60,20 @@ class Ui_MainWindow(object):
 
         self.right_translation.setHidden(True)
 
-        self.Test_me.clicked.connect(self.show_spanish_word)
+        self.Start.clicked.connect(self.show_spanish_word)
+        self.Start.clicked.connect(self.show_english_translation_check)
 
-        self.lineEdit.returnPressed.connect(lambda: self.check_the_translation())
+        self.user_translation.returnPressed.connect(lambda: self.check_the_translation())
+        self.user_translation.returnPressed.connect(lambda: self.show_english_translation_check())
+
 
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
         MainWindow.setWindowTitle(_translate("MainWindow", "Examiner"))
-        self.Test_me.setText(_translate("MainWindow", "Test me !"))
+        self.Start.setText(_translate("MainWindow", "Start"))
         self.label1.setText(_translate("MainWindow", "Translate to english:"))
-        self.spanish_word.setText(_translate("MainWindow", "TextLabel"))
+        self.spanish_word.setText(_translate("MainWindow", "spanish_word"))
+        self.english_word.setText(_translate("MainWindow", "english_word"))
         self.check_of_translation.setText(_translate("MainWindow", "Evaluation"))
         self.right_translation.setText(_translate("MainWindow", "Right translation was"))
 
@@ -75,16 +83,19 @@ class Ui_MainWindow(object):
         #print(Database.verify_translation(self.lineEdit.text()))
         #english_translation = Database.english_in_spanish_out(self.lineEdit.text())
 
-        if self.spanish_word.text() == Database.english_in_spanish_out(self.lineEdit.text()):
+        if self.spanish_word.text() == Database.english_in_spanish_out(self.user_translation.text()):
             self.check_of_translation.setText("Right translation ")
             self.check_of_translation.adjustSize()
         else:
             self.check_of_translation.setText("Wrong translation ")
             self.check_of_translation.adjustSize()
             self.right_translation.setHidden(False)
-            self.right_translation.setText("Righ translation was", Database.english_in_spanish_out(self.lineEdit.text()) )
+            self.right_translation.setText("Righ translation was " + Database.spanish_in_english_out(self.spanish_word.text()))
             self.right_translation.adjustSize()
 
+        
+
+        self.user_translation.clear()
         self.show_spanish_word()
 
 
@@ -96,6 +107,12 @@ class Ui_MainWindow(object):
     def update_label_spanish_word(self):
         self.spanish_word.adjustSize()
 
+    def update_label_english_word(self):
+        self.english_word.adjustSize()
+
+    def show_english_translation_check(self):
+        self.english_word.setText(Database.spanish_in_english_out(self.spanish_word.text()))
+        self.update_label_english_word()
 
 if __name__ == "__main__":
     import sys
