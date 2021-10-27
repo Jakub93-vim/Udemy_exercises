@@ -10,9 +10,11 @@
 
 from PyQt5 import QtCore, QtGui, QtWidgets
 import Examiner, Database
+from Examiner import Score
 
 
 class Ui_MainWindow(object):
+
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
         MainWindow.resize(833, 533)
@@ -40,12 +42,16 @@ class Ui_MainWindow(object):
         self.english_word.setObjectName("english_word")
 
         self.right_translation = QtWidgets.QLabel(self.centralwidget)
-        self.right_translation.setGeometry(QtCore.QRect(480, 170, 100, 16))
+        self.right_translation.setGeometry(QtCore.QRect(480, 168, 100, 16))
         self.right_translation.setObjectName("right_translation")
 
         self.check_of_translation = QtWidgets.QLabel(self.centralwidget)
-        self.check_of_translation.setGeometry(QtCore.QRect(320, 130, 55, 16))
+        self.check_of_translation.setGeometry(QtCore.QRect(310, 130, 55, 16))
         self.check_of_translation.setObjectName("check_of_translation")
+
+        self.score = QtWidgets.QLabel(self.centralwidget)
+        self.score.setGeometry(QtCore.QRect(60, 230, 55, 16))
+        self.score.setObjectName("score")
 
         MainWindow.setCentralWidget(self.centralwidget)
         self.menubar = QtWidgets.QMenuBar(MainWindow)
@@ -59,7 +65,7 @@ class Ui_MainWindow(object):
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
 
         self.right_translation.setHidden(True)
-        self.english_word.setHidden(True)
+        self.english_word.setHidden(False) # right translation displayed in window as a check
 
         self.Start.clicked.connect(self.show_spanish_word)
         self.Start.clicked.connect(self.show_english_translation_check)
@@ -72,6 +78,7 @@ class Ui_MainWindow(object):
         _translate = QtCore.QCoreApplication.translate
         MainWindow.setWindowTitle(_translate("MainWindow", "Examiner"))
         self.Start.setText(_translate("MainWindow", "Start"))
+        self.score.setText(_translate("MainWindow", "Your score is:"))
         self.label1.setText(_translate("MainWindow", "Translate to english:"))
         self.spanish_word.setText(_translate("MainWindow", "spanish_word"))
         self.english_word.setText(_translate("MainWindow", "english_word"))
@@ -86,17 +93,22 @@ class Ui_MainWindow(object):
             self.check_of_translation.setText("Right translation ")
             self.check_of_translation.setStyleSheet("color:green")
             self.check_of_translation.adjustSize()
+            Examiner.score_object.increase_score()
+            self.score.setText("Your score is " + str(Examiner.score_object.show_score()))
         else:
             self.check_of_translation.setText("Wrong translation ")
-            self.check_of_translation.setFont(QtGui.QFont("Times",weight=QtGui.QFont.Bold))
+            self.check_of_translation.setFont(QtGui.QFont("Times",weight=QtGui.QFont.Bold)) #set the font to bold
             self.check_of_translation.setStyleSheet("color:red")
             self.check_of_translation.adjustSize()
             self.right_translation.setHidden(False)
-            self.right_translation.setText("Righ translation was " + Database.spanish_in_english_out(self.spanish_word.text()))
+            self.right_translation_word = Database.spanish_in_english_out(self.spanish_word.text())
+            self.right_translation.setText("Righ translation was: " + self.right_translation_word +
+                                           " ... you put: " + self.user_translation.text() )
             self.right_translation.adjustSize()
+            Examiner.score_object.decrease_score()
+            self.score.setText("Your score is " + str(Examiner.score_object.show_score()))
 
-        
-
+        self.score.adjustSize()
         self.user_translation.clear()
         self.show_spanish_word()
 
@@ -116,6 +128,7 @@ class Ui_MainWindow(object):
         self.english_word.setText(Database.spanish_in_english_out(self.spanish_word.text()))
         self.update_label_english_word()
 
+
 if __name__ == "__main__":
     import sys
     app = QtWidgets.QApplication(sys.argv)
@@ -124,6 +137,7 @@ if __name__ == "__main__":
     ui.setupUi(MainWindow)
     MainWindow.show()
     sys.exit(app.exec_())
+
 
 
 
