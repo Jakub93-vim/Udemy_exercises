@@ -10,6 +10,7 @@
 
 from PyQt5 import QtCore, QtGui, QtWidgets
 import Examiner, Database
+import PyQt5
 from Examiner import Score
 
 
@@ -70,9 +71,14 @@ class Ui_MainWindow(object):
         self.Start.clicked.connect(self.show_spanish_word)
         self.Start.clicked.connect(self.show_english_translation_check)
 
-        self.user_translation.returnPressed.connect(lambda: self.check_the_translation())
-        self.user_translation.returnPressed.connect(lambda: self.show_english_translation_check())
+        for i in (0,5):
+            self.user_translation.returnPressed.connect(lambda: self.check_the_translation())
+            self.user_translation.returnPressed.connect(lambda: self.show_english_translation_check())
+            i += 1
 
+            msg = PyQt5.QtWidgets.QMessageBox()
+            msg.setText("Hello")
+            msg.exec_()
 
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
