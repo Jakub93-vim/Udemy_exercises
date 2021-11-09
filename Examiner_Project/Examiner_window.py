@@ -71,10 +71,11 @@ class Ui_MainWindow(object):
         self.Start.clicked.connect(self.show_spanish_word)
         self.Start.clicked.connect(self.show_english_translation_check)
 
-        for i in (0,5):
+        for j in range(0,2):
             self.user_translation.returnPressed.connect(lambda: self.check_the_translation())
             self.user_translation.returnPressed.connect(lambda: self.show_english_translation_check())
-            i += 1
+
+        for i in range (0,2):
 
             msg = PyQt5.QtWidgets.QMessageBox()
             msg.setText("Hello")
