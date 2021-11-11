@@ -16,6 +16,11 @@ from Examiner import Score
 
 class Ui_MainWindow(object):
 
+    def __init__(self):
+
+        self.num_of_translations = 0
+
+
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
         MainWindow.resize(833, 533)
@@ -71,11 +76,13 @@ class Ui_MainWindow(object):
         self.Start.clicked.connect(self.show_spanish_word)
         self.Start.clicked.connect(self.show_english_translation_check)
 
-        for j in range(0,2):
-            self.user_translation.returnPressed.connect(lambda: self.check_the_translation())
-            self.user_translation.returnPressed.connect(lambda: self.show_english_translation_check())
 
-        for i in range (0,2):
+        self.user_translation.returnPressed.connect(lambda: self.check_the_translation())
+        self.user_translation.returnPressed.connect(lambda: self.show_english_translation_check())
+
+
+
+        if self.num_of_translations == 2:
 
             msg = PyQt5.QtWidgets.QMessageBox()
             msg.setText("Hello")
@@ -93,6 +100,10 @@ class Ui_MainWindow(object):
         self.right_translation.setText(_translate("MainWindow", "Right translation was"))
 
     def check_the_translation(self):
+
+        print(self.num_of_translations)
+
+        Ui_MainWindow.count_translations(self)
 
         self.right_translation.setHidden(True)
 
@@ -119,6 +130,16 @@ class Ui_MainWindow(object):
         self.user_translation.clear()
         self.show_spanish_word()
 
+    def count_translations(self):
+
+        self.num_of_translations += 1
+
+        if self.num_of_translations == 5:
+
+            msg = PyQt5.QtWidgets.QMessageBox()
+            msg.setText("Hello")
+            msg.exec_()
+
 
     def show_spanish_word(self):
         self.spanish_word.setText(Examiner.examine_object.return_spanish_word())
@@ -131,7 +152,7 @@ class Ui_MainWindow(object):
     def update_label_english_word(self):
         self.english_word.adjustSize()
 
-    def show_english_translation_check(self):
+    def show_english_translation_check(self): # returns english translation to check the right translated state
         self.english_word.setText(Database.spanish_in_english_out(self.spanish_word.text()))
         self.update_label_english_word()
 
