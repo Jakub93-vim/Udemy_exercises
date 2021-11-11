@@ -138,7 +138,10 @@ class Ui_MainWindow(object):
 
             msg = PyQt5.QtWidgets.QMessageBox()
             msg.setText("Hello")
+            msg.setDetailedText("all the translations ")
+
             msg.exec_()
+            self.num_of_translations = 0
 
 
     def show_spanish_word(self):
