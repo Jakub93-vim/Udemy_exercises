@@ -20,6 +20,9 @@ class Ui_MainWindow(object):
 
         self.num_of_translations = 0
 
+        self.good_translations = []
+        self.wrong_translations = []
+
 
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
@@ -103,7 +106,7 @@ class Ui_MainWindow(object):
 
         print(self.num_of_translations)
 
-        Ui_MainWindow.count_translations(self)
+        Ui_MainWindow.count_translations_evaluation(self)
 
         self.right_translation.setHidden(True)
 
@@ -113,6 +116,7 @@ class Ui_MainWindow(object):
             self.check_of_translation.adjustSize()
             Examiner.score_object.increase_score()
             self.score.setText("Your score is " + str(Examiner.score_object.show_score()))
+
         else:
             self.check_of_translation.setText("Wrong translation ")
             self.check_of_translation.setFont(QtGui.QFont("Times",weight=QtGui.QFont.Bold)) #set the font to bold
@@ -130,7 +134,7 @@ class Ui_MainWindow(object):
         self.user_translation.clear()
         self.show_spanish_word()
 
-    def count_translations(self):
+    def count_translations_evaluation(self):
 
         self.num_of_translations += 1
 
