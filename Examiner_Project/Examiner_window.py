@@ -106,8 +106,6 @@ class Ui_MainWindow(object):
 
         print(self.num_of_translations)
 
-
-
         self.right_translation.setHidden(True)
 
         if self.spanish_word.text() == Database.english_in_spanish_out(self.user_translation.text()):
@@ -139,14 +137,15 @@ class Ui_MainWindow(object):
 
         Ui_MainWindow.count_translations_evaluation(self)
 
-    def count_translations_evaluation(self):
+    def count_translations_evaluation(self): # evaluation button after examination round
 
         self.num_of_translations += 1
 
         if self.num_of_translations == 3:
 
             msg = PyQt5.QtWidgets.QMessageBox()
-            msg.setText("Hello")
+            msg.setText("Traslation round evaluation")
+            msg.setWindowTitle("Evaluation")
             print(self.wrong_translations)
             msg.setDetailedText("Right translated was: " + str(self.good_translations) + "\n" +
                                 "Wrong translated was: " + str(self.wrong_translations))
