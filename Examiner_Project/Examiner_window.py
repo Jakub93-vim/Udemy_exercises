@@ -117,7 +117,7 @@ class Ui_MainWindow(object):
             Examiner.score_object.increase_score()
             self.score.setText("Your score is " + str(Examiner.score_object.show_score()))
 
-            self.good_translations += 'self.spanish_word.text'
+            self.good_translations += self.spanish_word.text()
         else:
             self.check_of_translation.setText("Wrong translation ")
             self.check_of_translation.setFont(QtGui.QFont("Times",weight=QtGui.QFont.Bold)) #set the font to bold
@@ -131,7 +131,7 @@ class Ui_MainWindow(object):
             Examiner.score_object.decrease_score()
             self.score.setText("Your score is " + str(Examiner.score_object.show_score()))
 
-            self.wrong_translations += 'self.spanish_word.text'
+            self.wrong_translations += self.spanish_word.text()
 
         self.score.adjustSize()
         self.user_translation.clear()
@@ -145,7 +145,8 @@ class Ui_MainWindow(object):
 
             msg = PyQt5.QtWidgets.QMessageBox()
             msg.setText("Hello")
-            msg.setDetailedText("good " + str(self.right_translation) + "wrong" + str(self.wrong_translations))
+            msg.setDetailedText("good " + (self.right_translation) + "wrong" + (self.wrong_translations))
+            msg.setStyleSheet("QLabel{min-width: 500px;}")
 
             msg.exec_()
             self.num_of_translations = 0
