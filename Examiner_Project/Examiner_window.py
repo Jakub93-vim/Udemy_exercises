@@ -34,6 +34,10 @@ class Ui_MainWindow(object):
         self.Start.setGeometry(QtCore.QRect(60, 120, 93, 28))
         self.Start.setObjectName("Start")
 
+        self.Insert_meaning = QtWidgets.QPushButton(self.centralwidget)
+        self.Insert_meaning.setGeometry(QtCore.QRect(200, 350, 93, 28))
+        self.Insert_meaning.setObjectName("Insert meaning")
+
         self.label1 = QtWidgets.QLabel(self.centralwidget)
         self.label1.setGeometry(QtCore.QRect(60, 160, 131, 31))
         self.label1.setObjectName("label1")
@@ -42,9 +46,25 @@ class Ui_MainWindow(object):
         self.user_translation.setGeometry(QtCore.QRect(310, 160, 113, 22))
         self.user_translation.setObjectName("user_translation")
 
+        self.insert_spanish_edit = QtWidgets.QLineEdit(self.centralwidget)
+        self.insert_spanish_edit.setGeometry(QtCore.QRect(400, 430, 113, 22))
+        self.insert_spanish_edit.setObjectName("user_translation")
+
+        self.insert_english_edit = QtWidgets.QLineEdit(self.centralwidget)
+        self.insert_english_edit.setGeometry(QtCore.QRect(200, 430, 113, 22))
+        self.insert_english_edit.setObjectName("user_translation")
+
         self.spanish_word = QtWidgets.QLabel(self.centralwidget)
         self.spanish_word.setGeometry(QtCore.QRect(200, 168, 90, 20))
         self.spanish_word.setObjectName("spanish_word")
+
+        self.insert_english = QtWidgets.QLabel(self.centralwidget)
+        self.insert_english.setGeometry(QtCore.QRect(200, 400, 150, 20))
+        self.insert_english.setObjectName("insert_english")
+
+        self.insert_spanish = QtWidgets.QLabel(self.centralwidget)
+        self.insert_spanish.setGeometry(QtCore.QRect(400, 400, 150, 20))
+        self.insert_spanish.setObjectName("insert_spanish")
 
         self.english_word = QtWidgets.QLabel(self.centralwidget)
         self.english_word.setGeometry(QtCore.QRect(200, 220, 90, 20))
@@ -95,12 +115,15 @@ class Ui_MainWindow(object):
         _translate = QtCore.QCoreApplication.translate
         MainWindow.setWindowTitle(_translate("MainWindow", "Examiner"))
         self.Start.setText(_translate("MainWindow", "Start"))
+        self.Insert_meaning.setText(_translate("MainWindow", "Insert meaning"))
         self.score.setText(_translate("MainWindow", "Your score is:"))
         self.label1.setText(_translate("MainWindow", "Translate to english:"))
         self.spanish_word.setText(_translate("MainWindow", "spanish_word"))
         self.english_word.setText(_translate("MainWindow", "english_word"))
         self.check_of_translation.setText(_translate("MainWindow", "Evaluation"))
         self.right_translation.setText(_translate("MainWindow", "Right translation was"))
+        self.insert_english.setText(_translate("MainWindow", "English meaning"))
+        self.insert_spanish.setText(_translate("MainWindow", "Spanish meaning"))
 
     def check_the_translation(self):
 
@@ -153,6 +176,13 @@ class Ui_MainWindow(object):
 
             msg.exec_()
             self.num_of_translations = 0
+
+    def new_database_item(self):
+
+        if not self.insert_english_edit.text() and self.insert_spanish_edit:
+            msg = PyQt5.QtWidgets.QMessageBox()
+            msg.setText("There are no input words, please insert them")
+
 
 
     def show_spanish_word(self):
