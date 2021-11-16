@@ -186,8 +186,11 @@ class Ui_MainWindow(object):
             print("hello")
 
         if not ( self.insert_english_edit.text() and self.insert_spanish_edit.text() ):
+
+            print("i am working")
             msg = PyQt5.QtWidgets.QMessageBox()
             msg.setText("There are no input words, please insert them")
+            msg.exec_()
 
 
 
