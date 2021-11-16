@@ -181,16 +181,20 @@ class Ui_MainWindow(object):
 
     def new_database_item(self): # inserts words in examiner database
 
-        if not self.insert_spanish_edit.text():
-
-            print("hello")
-
         if not ( self.insert_english_edit.text() and self.insert_spanish_edit.text() ):
 
-            print("i am working")
             msg = PyQt5.QtWidgets.QMessageBox()
             msg.setText("There are no input words, please insert them")
             msg.exec_()
+
+        else:
+
+            spanish = self.insert_spanish_edit.text()
+            english = self.insert_english_edit.text()
+
+
+
+            Database.insert_value(spanish,english)
 
 
 
