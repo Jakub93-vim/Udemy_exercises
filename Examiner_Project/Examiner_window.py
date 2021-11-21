@@ -195,7 +195,7 @@ class Ui_MainWindow(object):
             english = self.insert_english_edit.text()
 
             qm = PyQt5.QtWidgets.QMessageBox()
-            rep = qm.question(self, '', 'Are you sure you want to insert the words?', qm.Yes | qm.No)
+            rep = qm.question(self.centralwidget, '', 'Are you sure you want to insert the words?', qm.Yes | qm.No)
             if rep == qm.Yes:
                 pass
             else:
