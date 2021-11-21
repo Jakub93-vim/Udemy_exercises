@@ -9,6 +9,8 @@
 
 
 from PyQt5 import QtCore, QtGui, QtWidgets
+from PyQt5.QtGui import *
+from PyQt5.QtCore import *
 import Examiner, Database
 import PyQt5
 from Examiner import Score
@@ -66,7 +68,7 @@ class Ui_MainWindow(object):
         self.insert_spanish.setGeometry(QtCore.QRect(400, 400, 150, 20))
         self.insert_spanish.setObjectName("insert_spanish")
 
-        self.english_word = QtWidgets.QLabel(self.centralwidget)
+        self.english_word = QtWidgets.QLabel(self.centralwidget) # right translation for developing purposes
         self.english_word.setGeometry(QtCore.QRect(200, 220, 90, 20))
         self.english_word.setObjectName("english_word")
 
@@ -99,7 +101,7 @@ class Ui_MainWindow(object):
         self.Start.clicked.connect(self.show_spanish_word)
         self.Start.clicked.connect(self.show_english_translation_check)
 
-        #self.insert_meaning.clicked.connect(self.new_database_item)
+        self.insert_meaning.clicked.connect(self.new_database_item) # adds item in database
 
 
         self.user_translation.returnPressed.connect(lambda: self.check_the_translation())
@@ -178,7 +180,7 @@ class Ui_MainWindow(object):
 
             msg.exec_()
             self.num_of_translations = 0
-    '''
+
     def new_database_item(self): # inserts words in examiner database
 
         if not ( self.insert_english_edit.text() and self.insert_spanish_edit.text() ):
@@ -192,14 +194,14 @@ class Ui_MainWindow(object):
             spanish = self.insert_spanish_edit.text()
             english = self.insert_english_edit.text()
 
-            reply = QMessageBox.Question(self, 'Quit', 'Are you sure you want to insert the words?',
-                                         QMessageBox.Yes | QMessageBox.No, QMessageBox.No)
-            if reply == QMessageBox.Yes:
+            qm = PyQt5.QtWidgets.QMessageBox()
+            rep = qm.question(self, '', 'Are you sure you want to insert the words?', qm.Yes | qm.No)
+            if rep == qm.Yes:
                 pass
             else:
                 pass
            # Database.insert_value(spanish,english)
-    '''
+
 
 
     def show_spanish_word(self):
