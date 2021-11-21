@@ -30,23 +30,23 @@ class Ui_MainWindow(object):
         self.centralwidget = QtWidgets.QWidget(MainWindow)
         self.centralwidget.setObjectName("centralwidget")
 
-        self.Start = QtWidgets.QPushButton(self.centralwidget)
+        self.Start = QtWidgets.QPushButton(self.centralwidget) # start button, starts examination
         self.Start.setGeometry(QtCore.QRect(60, 120, 93, 28))
         self.Start.setObjectName("Start")
 
-        self.insert_meaning = QtWidgets.QPushButton(self.centralwidget)
+        self.insert_meaning = QtWidgets.QPushButton(self.centralwidget) # insert meaning button to database
         self.insert_meaning.setGeometry(QtCore.QRect(200, 350, 93, 28))
         self.insert_meaning.setObjectName("Insert meaning")
 
-        self.label1 = QtWidgets.QLabel(self.centralwidget)
-        self.label1.setGeometry(QtCore.QRect(60, 160, 131, 31))
-        self.label1.setObjectName("label1")
+        self.translate_to_eng_label = QtWidgets.QLabel(self.centralwidget) # label translate to english
+        self.translate_to_eng_label.setGeometry(QtCore.QRect(60, 160, 131, 31))
+        self.translate_to_eng_label.setObjectName("label1")
 
-        self.user_translation = QtWidgets.QLineEdit(self.centralwidget)
+        self.user_translation = QtWidgets.QLineEdit(self.centralwidget) # translation from the user
         self.user_translation.setGeometry(QtCore.QRect(310, 160, 113, 22))
         self.user_translation.setObjectName("user_translation")
 
-        self.insert_spanish_edit = QtWidgets.QLineEdit(self.centralwidget)
+        self.insert_spanish_edit = QtWidgets.QLineEdit(self.centralwidget) # spanish word input to database
         self.insert_spanish_edit.setGeometry(QtCore.QRect(400, 430, 113, 22))
         self.insert_spanish_edit.setObjectName("user_translation")
 
@@ -93,13 +93,13 @@ class Ui_MainWindow(object):
         self.retranslateUi(MainWindow)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
 
-        self.right_translation.setHidden(True)
+        self.right_translation.setHidden(False)
         self.english_word.setHidden(False) # right translation displayed in window as a check
 
         self.Start.clicked.connect(self.show_spanish_word)
         self.Start.clicked.connect(self.show_english_translation_check)
 
-        self.insert_meaning.clicked.connect(self.new_database_item)
+        #self.insert_meaning.clicked.connect(self.new_database_item)
 
 
         self.user_translation.returnPressed.connect(lambda: self.check_the_translation())
@@ -119,7 +119,7 @@ class Ui_MainWindow(object):
         self.Start.setText(_translate("MainWindow", "Start"))
         self.insert_meaning.setText(_translate("MainWindow", "Insert meaning"))
         self.score.setText(_translate("MainWindow", "Your score is:"))
-        self.label1.setText(_translate("MainWindow", "Translate to english:"))
+        self.translate_to_eng_label.setText(_translate("MainWindow", "Translate to english:"))
         self.spanish_word.setText(_translate("MainWindow", "spanish_word"))
         self.english_word.setText(_translate("MainWindow", "english_word"))
         self.check_of_translation.setText(_translate("MainWindow", "Evaluation"))
@@ -131,7 +131,7 @@ class Ui_MainWindow(object):
 
         print(self.num_of_translations)
 
-        self.right_translation.setHidden(True)
+        self.right_translation.setHidden(False)
 
         if self.spanish_word.text() == Database.english_in_spanish_out(self.user_translation.text()):
             self.check_of_translation.setText("Right translation ")
@@ -178,7 +178,7 @@ class Ui_MainWindow(object):
 
             msg.exec_()
             self.num_of_translations = 0
-
+    '''
     def new_database_item(self): # inserts words in examiner database
 
         if not ( self.insert_english_edit.text() and self.insert_spanish_edit.text() ):
@@ -192,10 +192,14 @@ class Ui_MainWindow(object):
             spanish = self.insert_spanish_edit.text()
             english = self.insert_english_edit.text()
 
-
-
-            Database.insert_value(spanish,english)
-
+            reply = QMessageBox.Question(self, 'Quit', 'Are you sure you want to insert the words?',
+                                         QMessageBox.Yes | QMessageBox.No, QMessageBox.No)
+            if reply == QMessageBox.Yes:
+                pass
+            else:
+                pass
+           # Database.insert_value(spanish,english)
+    '''
 
 
     def show_spanish_word(self):
