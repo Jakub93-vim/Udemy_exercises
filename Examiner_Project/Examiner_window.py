@@ -50,19 +50,19 @@ class Ui_MainWindow(object):
         self.insert_spanish_edit.setGeometry(QtCore.QRect(400, 430, 113, 22))
         self.insert_spanish_edit.setObjectName("user_translation")
 
-        self.insert_english_edit = QtWidgets.QLineEdit(self.centralwidget)
+        self.insert_english_edit = QtWidgets.QLineEdit(self.centralwidget) # english word input to database
         self.insert_english_edit.setGeometry(QtCore.QRect(200, 430, 113, 22))
         self.insert_english_edit.setObjectName("user_translation")
 
-        self.spanish_word = QtWidgets.QLabel(self.centralwidget)
+        self.spanish_word = QtWidgets.QLabel(self.centralwidget) # spanish word to database label
         self.spanish_word.setGeometry(QtCore.QRect(200, 168, 90, 20))
         self.spanish_word.setObjectName("spanish_word")
 
-        self.insert_english = QtWidgets.QLabel(self.centralwidget)
+        self.insert_english = QtWidgets.QLabel(self.centralwidget) # english word to database label
         self.insert_english.setGeometry(QtCore.QRect(200, 400, 150, 20))
         self.insert_english.setObjectName("insert_english")
 
-        self.insert_spanish = QtWidgets.QLabel(self.centralwidget)
+        self.insert_spanish = QtWidgets.QLabel(self.centralwidget) # spanish word to database label
         self.insert_spanish.setGeometry(QtCore.QRect(400, 400, 150, 20))
         self.insert_spanish.setObjectName("insert_spanish")
 
@@ -70,15 +70,15 @@ class Ui_MainWindow(object):
         self.english_word.setGeometry(QtCore.QRect(200, 220, 90, 20))
         self.english_word.setObjectName("english_word")
 
-        self.right_translation = QtWidgets.QLabel(self.centralwidget)
+        self.right_translation = QtWidgets.QLabel(self.centralwidget) # shows "right translation was" when translated incorrectly
         self.right_translation.setGeometry(QtCore.QRect(480, 168, 100, 16))
         self.right_translation.setObjectName("right_translation")
 
-        self.check_of_translation = QtWidgets.QLabel(self.centralwidget)
+        self.check_of_translation = QtWidgets.QLabel(self.centralwidget) # displays "wrong translation" or "good translation"
         self.check_of_translation.setGeometry(QtCore.QRect(310, 130, 55, 16))
         self.check_of_translation.setObjectName("check_of_translation")
 
-        self.score = QtWidgets.QLabel(self.centralwidget)
+        self.score = QtWidgets.QLabel(self.centralwidget) # shows score of the user
         self.score.setGeometry(QtCore.QRect(60, 230, 55, 16))
         self.score.setObjectName("score")
 
@@ -93,7 +93,7 @@ class Ui_MainWindow(object):
         self.retranslateUi(MainWindow)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
 
-        self.right_translation.setHidden(False)
+        self.right_translation.setHidden(True)
         self.english_word.setHidden(False) # right translation displayed in window as a check
 
         self.Start.clicked.connect(self.show_spanish_word)
@@ -131,9 +131,9 @@ class Ui_MainWindow(object):
 
         print(self.num_of_translations)
 
-        self.right_translation.setHidden(False)
 
         if self.spanish_word.text() == Database.english_in_spanish_out(self.user_translation.text()):
+            self.right_translation.setHidden(True)
             self.check_of_translation.setText("Right translation ")
             self.check_of_translation.setStyleSheet("color:green")
             self.check_of_translation.adjustSize()
