@@ -61,17 +61,17 @@ def spanish_in_english_out(spanish_meaning):
 #mycursor.execute("CREATE TABLE Vocabulary (spanish VARCHAR(50), enslish VARCHAR(50), wordID int PRIMARY KEY AUTO_INCREMENT)")
 
 #SHOW TABLES
-#mycursor.execute("SHOW TABLES")
-#for databases in mycursor:
-#    print (databases)
+mycursor.execute("SHOW TABLES")
+for databases in mycursor:
+    print (databases)
 
 #SHOW MY TABLE
-#mycursor.execute("SELECT * FROM new_vocabulary")
-#result = mycursor.fetchall()
+mycursor.execute("SELECT * FROM new_vocabulary")
+result = mycursor.fetchall()
 
-#for row in result:
-#    print(row)
-#    print("\n")
+for row in result:
+    print(row)
+    print("\n")
 
 #SHOW COLUMNS
 #mycursor.execute("SHOW COLUMNS FROM new_vocabulary")

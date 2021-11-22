@@ -197,11 +197,14 @@ class Ui_MainWindow(object):
             qm = PyQt5.QtWidgets.QMessageBox()
             rep = qm.question(self.centralwidget, '', 'Are you sure you want to insert the words?', qm.Yes | qm.No)
             if rep == qm.Yes:
-                pass
+                print ("I will add some words")
+
             else:
-                pass
+                print (" Will not add words")
            # Database.insert_value(spanish,english)
 
+        self.insert_spanish_edit.clear()
+        self.insert_english_edit.clear()
 
 
     def show_spanish_word(self):
