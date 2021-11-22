@@ -197,7 +197,11 @@ class Ui_MainWindow(object):
             qm = PyQt5.QtWidgets.QMessageBox()
             rep = qm.question(self.centralwidget, '', 'Are you sure you want to insert the words?', qm.Yes | qm.No)
             if rep == qm.Yes:
-                print ("I will add some words")
+                Database.insert_value(spanish, english)
+                confirm_msg = PyQt5.QtWidgets.QMessageBox()
+                confirm_msg.setText(f'The spanish word {spanish} with translation {english} was added.')
+                confirm_msg.exec_()
+
 
             else:
                 print (" Will not add words")
